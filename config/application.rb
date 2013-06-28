@@ -20,3 +20,7 @@ module Membership
     # config.i18n.default_locale = :de
   end
 end
+
+Membership::Application.configure do
+  config.assets.initialize_on_precompile = false
+end
