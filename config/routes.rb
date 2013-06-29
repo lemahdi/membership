@@ -1,6 +1,6 @@
 Membership::Application.routes.draw do
   devise_for :users
-  resources :users
+  resources :users, except: [:create, :new, :destroy]
 
   get "home/index"
 

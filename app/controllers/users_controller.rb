@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  before_filter :authenticate_user!
+  before_filter :correct_user?, only: [:edit, :update, :destroy]
+
   # GET /users
   # GET /users.json
   def index
@@ -19,6 +22,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    # redirect_to root_path unless correct_user?
   end
 
   # POST /users
@@ -40,6 +44,8 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    # redirect_to root_path unless correct_user?
+
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -70,5 +76,9 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:nom, :prenom)
+    end
+
+    def correct_user?
+      redirect_to root_path unless current_user == @user
     end
 end
