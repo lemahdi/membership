@@ -6,7 +6,7 @@ Membership::Application.routes.draw do
 
   get "home/index"
 
-  resources :users, except: [:create, :new, :destroy]
+  resources :users, except: [:create, :new]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

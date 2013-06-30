@@ -12,6 +12,7 @@
   </thead>
 
   <tbody>
+    <% is_current_admin = current_user.admin? %>
     <% @users.each do |user| %>
     <tr>
       <td><%= user.nom %></td>
@@ -19,9 +20,9 @@
       <td><%= link_to 'Show', user %></td>
       <td><%= link_to 'Edit', edit_user_path(user) %></td>
       <td>
-        <% unless current_user?(user) %>
+        <% if is_current_admin && !current_user?(user) %>
           <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% end %>
+        <% end%>
       </td>
     </tr>
     <% end %>

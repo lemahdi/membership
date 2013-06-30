@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user,      only: [:show, :edit, :update, :destroy]
 
   before_filter :store_location
   before_filter :authenticate_user!
-  before_filter :correct_user?, only: [:edit, :update, :destroy]
+  before_filter :correct_user?, only: [:edit, :update]
+  before_filter :admin?,        only: [:destroy]
 
   # GET /users
   # GET /users.json
@@ -78,6 +79,10 @@ class UsersController < ApplicationController
     end
 
     def correct_user?
-      redirect_to root_path unless current_user == @user
+      redirect_to root_url unless current_user == @user
+    end
+
+    def admin?
+      redirect_to root_url unless current_user.admin?
     end
 end

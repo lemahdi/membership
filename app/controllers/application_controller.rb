@@ -24,9 +24,4 @@ class ApplicationController < ActionController::Base
     def after_sign_out_path_for(resource)
       root_path
     end
-
-    # Redirect to user page on successful activation
-    # def after_confirmation_path_for(resource)
-    #   user_path(resource)
-    # end
 end
