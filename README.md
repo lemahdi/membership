@@ -1,0 +1,4 @@
+membership
+==========
+
+Membership with Devise
