@@ -3,8 +3,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :store_location
-
   # Force signout to prevent CSRF attacks
   def handle_unverified_request
   	sign_out
@@ -27,13 +25,8 @@ class ApplicationController < ActionController::Base
       root_path
     end
 
-    # Redirect to root page on successful signup
-    def after_signup_path_for(resource)
-      root_path
-    end
-
     # Redirect to user page on successful activation
-    def after_confirmation_path_for(resource)
-      user_path(resource)
-    end
+    # def after_confirmation_path_for(resource)
+    #   user_path(resource)
+    # end
 end
